@@ -126,66 +126,6 @@ double GetPCC(ExpressionSet expData,string proteinA,string proteinB){
 }
 
 
-
-
-/*
-void GetECC(Graph &graph){	   
-	//遍历图中的每一条边，求其ECC,再结合其PCC,得边的权重weight=ecc*r+pcc*(1-r) .
-	int mNum=0;
-	double ecc=0;
-	int dx=0,dy=0,mind;
-	double pcc=0;
-	for(size_t i=0;i<graph.m_NodeArray.size();i++){
-		//对于节点x
-		Node *nodex=&graph.m_NodeArray[i];
-		dx=nodex->m_iDegree;
-		Arc *arcxy=nodex->m_pFirst;		
-		while(arcxy!=NULL){//对于X的所有邻居节点Y：
-			Node *nodey=&graph.m_NodeArray[arcxy->m_iNodeTo];//与x相连的节点y
-			dy=nodey->m_iDegree;
-			Arc *arcxm=graph.m_NodeArray[i].m_pFirst;//与x相连的节点m
-			for(;arcxm!=NULL;arcxm=arcxm->m_pNextArc){//对于X的所有邻居（除了Y外）M：
-				if(arcxm!=arcxy){
-					Node *nodem=&graph.m_NodeArray[arcxm->m_iNodeTo];				
-					Arc *arcmy=nodem->m_pFirst;
-					while(arcmy!=NULL){//遍历与M相连的节点，若与Y与M相连：
-						if(arcmy->m_iNodeTo==nodey->m_iNode)
-						{	mNum++;
-						break;
-						}
-						arcmy=arcmy->m_pNextArc;
-					}
-				}				
-			}
-			mind=(dx<dy?dx:dy);			
-			arcxy->m_ecc=(double)mNum/mind;	
-
-			arcxy=arcxy->m_pNextArc;
-			mNum=0;
-		}
-	}
-}			 
-double GetECCab(Graph graph,string proteinA,string proteinB){	   
-	int pa=-1,pb=-1;
-	for(size_t i=0;i<graph.m_NodeArray.size();i++){
-		if(graph.m_NodeArray[i].gName==proteinA)
-			pa=i;
-		if(graph.m_NodeArray[i].gName==proteinB)
-			pb=i;
-		if(pa>-1&&pb>-1)break;
-	}
-	Arc *arcm=graph.m_NodeArray[pa].m_pFirst;
-	while(arcm!=NULL){//遍历与M相连的节点，若与Y与M相连：
-		if(arcm->m_iNodeTo==pb)
-		{	return arcm->m_ecc;
-		break;
-		}
-		arcm=arcm->m_pNextArc;
-	}
-	return 0;
-}
-*/
-
 int  splitString(string &strSrc, const string &strDelims, vector<string> &strDest)  
 {	/*分割字符串strSrc,分隔符为strDelims中的各个字符，分割出来的各个分量存在strDest*/
 	typedef string::size_type ST;  

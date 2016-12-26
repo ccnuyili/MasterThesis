@@ -12,7 +12,6 @@ using namespace std;
 
 #include "datastruct.h"
 #include "graph.h"
-#include "buildIntervalNodeset.h"
 #include "getActiveNodes.h"
 #include"getIntervalPPI.h"
 #include"getW.h"

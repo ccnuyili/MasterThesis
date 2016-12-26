@@ -49,8 +49,8 @@ public:
 	Num_Point=0;
 	for(int i=0;i<n_subPINs;i++){
 		ActivePoint[i]=-1;
-		//-1£ºÃ»¼¤»î
-		//1£º¼¤»î
+		//-1:nonActive
+		//1:Active
 	}
 	}
 };
