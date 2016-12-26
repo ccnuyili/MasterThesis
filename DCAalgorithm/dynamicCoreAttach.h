@@ -6,12 +6,11 @@
 
 class DyCoreAttach {
 public:
-	Graph TotalComplex;
-	vector<vector<Clique*> > sliceComplexVec; //0∫≈≤ª”√£¨¥”1...36
+	Graph TotalComplex;	
+//	vector<vector<Clique*> > sliceComplexVec; //0Âè∑‰∏çÁî®Ôºå‰ªé1...36
 	double alpha;
 	double cliqueAveWtv;
 	double outTV;
-
 
 	~DyCoreAttach() {		
 		for (size_t i = 0;i < sliceComplexVec.size();i++) {
@@ -21,24 +20,23 @@ public:
 		sliceComplexVec.clear();
 	}
 
-	void out2SliceComplex(const Graph *graph);
-	void changeProcess(const string outFile, double matchTV);
+//	void out2SliceComplex(const Graph *graph);
+//	void changeProcess(const string outFile, double matchTV);
 
 	template <class ProteinType> DyCoreAttach(const char *intervalPPI_Arch, string resultFileArch, const ProteinVec<ProteinType> &expressionMatrix):sliceComplexVec(SampleNum+1)
 	{
 		alpha = 0.6;
 		cliqueAveWtv = 0.55;
 		outTV = 1.4;
-		double matchTV = 0.2;
+//		double matchTV = 0.2;
 		char ch_k[3];
 		string str_k;
 		for (int k = 0;k < SampleNum;k++) {
-
 			string fromFileName(&intervalPPI_Arch[0], &intervalPPI_Arch[strlen(intervalPPI_Arch)]);
 			_itoa_s(k + 1, ch_k, 3, 10);
 			str_k = ch_k;
 			fromFileName += ("Interval_ppi_" + str_k + ".txt");
-			string subtofileLOG = resultFileArch + "complex_Interval_" + str_k + "LOG.txt";
+//			string subtofileLOG = resultFileArch + "complex_Interval_" + str_k + "LOG.txt";
 
 			Graph *graph = new Graph(fromFileName.c_str());
 			graph->getEdgeECC();
@@ -47,7 +45,7 @@ public:
 			graph->getCliques(k, cliqueAveWtv, cliqueAveWtv, outTV, alpha);
 			graph->FilterClique_NodeIDs(1.0);
 //			graph->outPutAllComplexLog(subtofileLOG);
-			out2SliceComplex(graph);
+//			out2SliceComplex(graph);
 
 			for (size_t ss = 0;ss < graph->m_CliqueArray.size();ss++) {
 				Clique *cli = new Clique(*graph->m_CliqueArray[ss]);
@@ -66,10 +64,9 @@ public:
 			"_cliqueAveTV=" + to_string(cliqueAveWtv) + "_outTV=" + to_string(outTV) + ".txt";
 		string logfile = tofile + "LOG.txt";
 		TotalComplex.FilterClique_NodeNames(1.0);
-//		TotalComplex.outPutAllComplex(tofile);
+		TotalComplex.outPutAllComplex(tofile);
 //		TotalComplex.outPutAllComplexLog(logfile);
 
-		/*
 		float tp = 0, fp = 0, fn = 0, numKC = 0, numPC = 0, tn = 0, sn = 0, sp = 0, f_measure = 0;
 		const char* knownComplexFile = "data//CYC2008.txt";
 		const char* PCInformationFile = "data//match_CYC2008//PCinformation.txt";
@@ -101,17 +98,17 @@ public:
 		OutFile << tofile << ":  SN:" << sn << "   SP:" << sp << "   F-measure:" << f_measure << endl;
 		if (OutFile)
 			OutFile.close();
-		*/		
-		string FinalLogfile = tofile + "_finalLog.txt";
-		changeProcess(FinalLogfile, matchTV);
+				
+//		string FinalLogfile = tofile + "_finalLog.txt";
+//		changeProcess(FinalLogfile, matchTV);
 		TotalComplex.clearGraph();
 		cout << tofile << "	has done!" << endl << "________________________________" << endl;
 	}
 };
 
-
+/*
 void DyCoreAttach::out2SliceComplex(const Graph *graph) {
-	//∞—graph÷–µƒclique¥Ê‘⁄sliceComplexVec
+	//Êäägraph‰∏≠ÁöÑcliqueÂ≠òÂú®sliceComplexVec
 	for (size_t i = 0;i < graph->m_CliqueArray.size();i++) {
 		Clique *cli = graph->m_CliqueArray[i];
 		if (cli->match) {
@@ -142,7 +139,7 @@ void DyCoreAttach::changeProcess(const string outFile,double matchTV){
 	for (size_t i = 0;i < TotalComplex.m_CliqueArray.size();i++) {
 		AllmatchRate = 0;
 		Clique *clique = TotalComplex.m_CliqueArray[i];
-		int id = clique->sliceID;  //ID∂º¥”1ø™ º
+		int id = clique->sliceID;  //IDÈÉΩ‰ªé1ÂºÄÂßã
 		if (clique->m_AttachNodes.size()<3)
 			continue;
 		double maxMatchRate;
@@ -180,4 +177,4 @@ void DyCoreAttach::changeProcess(const string outFile,double matchTV){
 		it--;
 	}
 	OutFile.close();
-}
+}*/
