@@ -3,31 +3,13 @@
 *	Date:	2016.12.23
 */
 
-#include "stdafx.h"
-
-#define CRTDBG_MAP_ALLOC    
-#include <stdlib.h>    
-#include <crtdbg.h>   
-
-
 #include"myheader.h"
 #include "proteinExpression.h"
 #include"sliceNetworksConstruction.h"
 #include"dynamicCoreAttach.h"
 
-//在入口函数中包含 _CrtDumpMemoryLeaks();    
-//即可检测到内存泄露  
-
-//定义函数：  
-inline void EnableMemLeakCheck()
-{
-	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
-}
-//该函数可以放在主函数的任意位置，都能正确的触发内存泄露输出  
-
 int main()
 {
-	//	EnableMemLeakCheck();
 	ProteinVec<Protein_uPlus3sigma> expressionMatrix_uPlus3sigma("data//Express.txt");
 //	expressionMatrix_uPlus3sigma.output("data//intervalActiveProteins_uPlus3sigma//");
 	
